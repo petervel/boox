@@ -45,21 +45,12 @@ services:
     restart: unless-stopped
     networks:
       - web
-
-  nginx:
-    image: nginx:alpine
-    restart: unless-stopped
     volumes:
-      - ./nginx/nginx.prod.conf:/etc/nginx/nginx.conf:ro
-      - ./frontend/build:/usr/share/nginx/html
-    depends_on:
-      - books-backend
-      - books-frontend
-    networks:
-      - web
+      - frontend-build:/usr/share/nginx/html
 
 volumes:
   mysql_data_prod:
+  frontend-build:
 
 networks:
   web:
